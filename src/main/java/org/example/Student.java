@@ -4,6 +4,7 @@ package org.example;
 public class Student {
 
 
+    Long id;
     String name;
     int age;
 
