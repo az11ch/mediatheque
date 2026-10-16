@@ -28,4 +28,8 @@ public class Catalogue<T extends Document> {
         for (T e : liste) if (e.compareTo(m) > 0) m = e;
         return m;
     }
+    public Iterator<T> iterator() {
+        return Collections.unmodifiableCollection(elements).iterator();
+    }
 }
+
