@@ -3,7 +3,7 @@ package mediatheque;
 public abstract class Document implements Comparable<Document> {
     private static int computer = 0;
     private final int id;
-    private final String titre;
+    protected final String titre;
     protected final int annee;
 
     protected Document(String titre, int annee) {

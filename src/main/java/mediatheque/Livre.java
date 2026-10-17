@@ -1,5 +1,7 @@
 package mediatheque;
 
+import mediatheque.exception.DocumentIndisponibleException;
+
 public class Livre extends Document implements Empruntable {
     private final String auteur;
     private final int nbPages;
@@ -33,10 +35,9 @@ public class Livre extends Document implements Empruntable {
     }
 
     @Override
-    public void emprunter() {
-        if (!disponible) {
-            throw new IllegalStateException("Deja emprunter :" + getTitre());
-        }
+    public void emprunter() throws DocumentIndisponibleException {
+        if (!disponible)
+            throw new DocumentIndisponibleException(getTitre());
         disponible = false;
     }
 

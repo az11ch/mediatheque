@@ -1,5 +1,6 @@
 package mediatheque;
 
+import mediatheque.exception.DocumentIndisponibleException;
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
@@ -32,7 +33,7 @@ class CatalogueTest {
     }
 
     @Test
-    void empruntNominal() {
+    void empruntNominal() throws DocumentIndisponibleException {
         Livre l = new Livre("Clean Code", 2008, "R. Martin", 464);
         l.emprunter();
         assertFalse(l.estDisponible());
@@ -41,10 +42,12 @@ class CatalogueTest {
     }
 
     @Test
-    void doubleEmpruntLeveException() {
+    void doubleEmpruntLeveException() throws DocumentIndisponibleException {
         Livre l = new Livre("Refactoring", 1999, "M. Fowler", 448);
         l.emprunter();
-        assertThrows(IllegalStateException.class, l::emprunter);
+        DocumentIndisponibleException ex =
+                assertThrows(DocumentIndisponibleException.class, l::emprunter);
+        assertTrue(ex.getMessage().contains("Refactoring"));
     }
 
     @Test
@@ -84,4 +87,13 @@ class CatalogueTest {
     void catalogue_vide_n_a_pas_de_suivant() {
         assertFalse(new Catalogue<Livre>().iterator().hasNext());
     }
+    @Test void recherche_ignore_la_casse() {
+        Catalogue<Document> c = new Catalogue<>();
+        c.ajouter(new Dvd("Inception", 2010, 148));
+        assertTrue(c.rechercherParTitre("INCEPTION").isPresent());
+    }
+
+
+
+
 }
