@@ -2,7 +2,7 @@ package mediatheque;
 
 import java.util.*;
 
-public class Catalogue<T extends Document> {
+public class Catalogue<T extends Document> implements Iterable<T> {
     private final List<T> elements = new ArrayList<>();
 
     public List<T> getElements() {
@@ -19,9 +19,9 @@ public class Catalogue<T extends Document> {
                 .findFirst();
     }
 
-    public void afficherTout() {
-        elements.forEach(d -> System.out.println(d.descriptionCourte()));
-    }
+    //public void afficherTout() {
+      //  elements.forEach(d -> System.out.println(d.descriptionCourte()));
+   // }
 
     public static <T extends Comparable<T>> T max(List<T> liste) {
         T m = liste.get(0);

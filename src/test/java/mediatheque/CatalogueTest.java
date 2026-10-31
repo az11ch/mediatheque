@@ -68,7 +68,6 @@ class CatalogueTest {
         Iterator<Document> b = catalogue.iterator();
         a.next();
         a.next();
-
         assertEquals("Clean Code", b.next().getTitre());
     }
 
