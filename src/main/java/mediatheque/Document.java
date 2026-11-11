@@ -6,6 +6,7 @@ public abstract class Document implements Comparable<Document> {
     protected final String titre;
     protected final int annee;
 
+
     protected Document(String titre, int annee) {
         this.id = ++computer;
         this.titre = titre;
