@@ -11,7 +11,6 @@ public class FormatJson implements FormatRapport {
     public String formater(List<Document> docs) {
 
         StringBuilder sb = new StringBuilder("[\n");
-
         for (int i = 0; i < docs.size(); i++) {
 
             Document d = docs.get(i);
